@@ -27,9 +27,9 @@ Key commands, prefixed with !, combine multiple keys with + operator, example:  
 Special commands, prefixed with !!, usually have an argument, which is seperated by a whitespace, example: !!delay 200; example: !!hex 0x15;
 Generic text, No prefix needed, just type away, example:  i hackz into yur compoter;
 
-Example Payload: Rick roll:
+Example Payload: Rick roll
 
-!lgui+r;https://www.youtube.com/watch?v=E4WlUXrJgy4;!enter;
+# !lgui+r;https://www.youtube.com/watch?v=E4WlUXrJgy4;!enter;
 
 KEYS:
 
