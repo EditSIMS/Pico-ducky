@@ -29,7 +29,7 @@ Generic text, No prefix needed, just type away, example:  i hackz into yur compo
 
 Example Payload: Rick roll
 
-# !lgui+r;https://www.youtube.com/watch?v=E4WlUXrJgy4;!enter;
+- !lgui+r;https://www.youtube.com/watch?v=E4WlUXrJgy4;!enter;
 
 KEYS:
 
