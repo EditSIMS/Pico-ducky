@@ -10,6 +10,9 @@ Credits to Circuitpython for providing adafruit library bundle and python SDK, a
    
 ![image](https://github.com/user-attachments/assets/633e929d-8b5c-4a35-a41f-546431ce3f35)
 
+![4bun501eqka91-3320441646](https://github.com/user-attachments/assets/9e135ee2-758a-4070-ae13-0753a2d786f6)
+
+
 5. Paste the code.py into the pico's main directory
 6. Paste the lib folder into there as well.
 
