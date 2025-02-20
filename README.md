@@ -1,11 +1,7 @@
-![image](https://github.com/user-attachments/assets/6fae0f8d-5fd4-470f-88f9-47ea02a20b4d)# Pico-ducky
-
 USB Rubber ducky clone using a regular RPI Pico, with an HC-05 bluetooth module.
 
 Credits to Circuitpython for providing adafruit library bundle and python SDK
 Credits to treguly on github for providing a repository to help me build this project, https://github.com/treguly/pico-hid
-
-
 
 # How to use: Setup and wiring
 1. Install circuitpython by downloading it from https://circuitpython.org/board/raspberry_pi_pico/
