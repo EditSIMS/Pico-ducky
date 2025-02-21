@@ -1,29 +1,33 @@
+# WARNING!!!!
+# This is a modified version of treguly's hid map. REFER to his original repo for the pure map.
+# modifications:  special key map uppercased. added newline support (emulates enter key) to the keyboard character map
+
 keyboard_special_key_map = {
-    'enter':        0x28,
-    'esc':          0x29,
-    'backspace':    0x2a,
-    'tab':          0x2b,
-    'space':        0x2c,
-    'prtscr':       0x46,
-    'pause':        0x48,
-    'insert':       0x49,
-    'home':         0x4a,
-    'pageup':       0x4b,
-    'del':          0x4c,
-    'end':          0x4d,
-    'pagedown':     0x4e,
-    'rightarrow':   0x4f,
-    'leftarrow':    0x50,
-    'downarrow':    0x51,
-    'uparrow':      0x52,
-    'lcontrol':     0xe0,
-    'lshift':       0xe1,
-    'lalt':         0xe2,
-    'lgui':         0xe3, #Windows Key
-    'rcontrol':     0xe4,
-    'rshift':       0xe5,
-    'ralt':         0xe6,
-    'rgui':         0xe7 
+    'ENTER':        0x28,
+    'ESC':          0x29,
+    'BACKSPACE':    0x2a,
+    'TAB':          0x2b,
+    'SPACE':        0x2c,
+    'PRTSCR':       0x46,
+    'PAUSE':        0x48,
+    'INSERT':       0x49,
+    'HOME':         0x4a,
+    'PAGEUP':       0x4b,
+    'DEL':          0x4c,
+    'END':          0x4d,
+    'PAGEDOWN':     0x4e,
+    'RIGHTARROW':   0x4f,
+    'LEFTARROW':    0x50,
+    'DOWNARROW':    0x51,
+    'UPARROW':      0x52,
+    'LCONTROL':     0xe0,
+    'LSHIFT':       0xe1,
+    'LALT':         0xe2,
+    'LGUI':         0xe3, #Windows Key
+    'RCONTROL':     0xe4,
+    'RSHIFT':       0xe5,
+    'RALT':         0xe6,
+    'RGUI':         0xe7 
 }
 
 keyboard_fkeys_map = {
@@ -82,31 +86,31 @@ F22 = fkeys['F22']
 F23 = fkeys['F23']
 F24 = fkeys['F24']
 
-ENTER = special['enter']
-ESC = special['esc']
-BACKSPACE = special['backspace']
-TAB = special['tab']
-SPACE = special['space']
-PRTSCR = special['prtscr']
-PAUSE = special['pause']
-INSERT = special['insert']
-HOME = special['home']
-PAGEUP = special['pageup']
-PAGEDOWN = special['pagedown']
-DEL = special['del']
-END = special['end']
-RIGHT_ARROW = special['rightarrow']
-LEFT_ARROW = special['leftarrow']
-UP_ARROW = special['uparrow']
-DOWN_ARROW = special['downarrow']
-LEFT_SHIFT = special['lshift']
-LEFT_CONTROL = special['lcontrol']
-LEFT_ALT = special['lalt']
-LEFT_GUI = special['lgui']
-RIGHT_SHIFT = special['rshift']
-RIGHT_CONTROL = special['rcontrol']
-RIGHT_ALT = special['ralt']
-RIGHT_GUI = special['rgui']
+ENTER = special['ENTER']
+ESC = special['ESC']
+BACKSPACE = special['BACKSPACE']
+TAB = special['TAB']
+SPACE = special['SPACE']
+PRTSCR = special['PRTSCR']
+PAUSE = special['PAUSE']
+INSERT = special['INSERT']
+HOME = special['HOME']
+PAGEUP = special['PAGEUP']
+PAGEDOWN = special['PAGEDOWN']
+DEL = special['DEL']
+END = special['END']
+RIGHT_ARROW = special['RIGHTARROW']
+LEFT_ARROW = special['LEFTARROW']
+UP_ARROW = special['UPARROW']
+DOWN_ARROW = special['DOWNARROW']
+LEFT_SHIFT = special['LSHIFT']
+LEFT_CONTROL = special['LCONTROL']
+LEFT_ALT = special['LALT']
+LEFT_GUI = special['LGUI']
+RIGHT_SHIFT = special['RSHIFT']
+RIGHT_CONTROL = special['RCONTROL']
+RIGHT_ALT = special['RALT']
+RIGHT_GUI = special['RGUI']
 WIN = LEFT_GUI
 SHIFT = LEFT_SHIFT
 ALT = LEFT_ALT
@@ -207,7 +211,10 @@ keyboard_character_map = {
     '~': [SHIFT, 0x35],
     '<': [SHIFT, 0x36],
     '>': [SHIFT, 0x37],
-    '?': [SHIFT, 0x38]
+    '?': [SHIFT, 0x38],
+    
+    # MODIFICATION!!!
+    '\n' : 0x28,
 }
 
 keyboard_character_map['\\'] = 0x31 #|
