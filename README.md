@@ -19,7 +19,7 @@ Credits to Circuitpython for providing adafruit library bundle and python SDK, a
 7. Pair your bluetooth module with any bluetooth serial app you prefer. (i reccomend "Serial Bluetooth Terminal" on play store)
 8. Follow the syntax and drop payloads!
 
-# How to use:  Payloads
+# How to use: Commands
 2 Types of commands: 
 - Payloads
 - System requests
