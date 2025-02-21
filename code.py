@@ -10,7 +10,6 @@ Github repo: https://github.com/EditSIMS/Pico-ducky/tree/main
 
 from package import *
 
-
 # open payload.json
 payload_filename = "payload.json"
 placeholder = {
@@ -27,7 +26,7 @@ if payload_filename in os.listdir():
         if not compare_dicts(data, placeholder):
             raise ValueError
         else:
-            time.sleep(1)
+            time.sleep(0.3)
             send(data["payload"])
 
     except (ValueError, OSError):
@@ -45,6 +44,7 @@ print("Pico ducky initiated. MADE WITH CIRCUITPYTHON. REPO: https://github.com/E
 
 if payload_corrupted:
     print(f"{payload_filename} not found or corrupted, PAYLOAD HAS BEEN RESET TO DEFAULT AND WILL NOT RUN")
+    
 while True:
     data = uart.read(32)  # read up to 32 bytes
 
