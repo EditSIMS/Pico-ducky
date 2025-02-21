@@ -9,7 +9,7 @@ Credits to Circuitpython for providing adafruit library bundle and python SDK, a
 4. Connect an HC-05 module or any other blueooth module to the pi, MAKE SURE +Voltage is connected to VBUS for reliable 5v power.
    
 ![image](https://github.com/user-attachments/assets/633e929d-8b5c-4a35-a41f-546431ce3f35)
-
+https://www.instructables.com/How-to-Use-HC-05-Bluetooth-With-Raspberry-Pi-Pico-/
 ![4bun501eqka91-3320441646](https://github.com/user-attachments/assets/9e135ee2-758a-4070-ae13-0753a2d786f6)
 
 
@@ -37,6 +37,7 @@ Payload must always end with ; to confirm it's integrity
 
 - delay, Waits for milliseconds, usage: !!delay 200;
 - hex,  Types a custom hex key, usage: !!hex 0x15;
+- repeat, Repeats a payload X times, usage:  !!repeat 5 !space;
 
 **Example Payload: Rick roll**
 
