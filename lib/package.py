@@ -10,8 +10,7 @@ import os
 import json
 import microcontroller
 
-special_keys_upper = {k.upper(): v for k, v in usb.special.items()}
-command_keys =  usb.fkeys | special_keys_upper | usb.keys
+command_keys =  usb.fkeys | usb.special | usb.keys
 
 kbd = Keyboard(usb_hid.devices)
 uart = busio.UART(board.GP0, board.GP1, baudrate=9600, timeout=0)
@@ -80,8 +79,8 @@ def get_key(key : str):
     return payload, errors
 
 def process_commands(buf : str):
-    if len(buf) < 1: return [], ["Buffer too short!\n"]
-    elif buf[-1] != ";": return [], ["Bad message\n"]
+    if len(buf) < 1: return [], ["EMPTY BUFFER\n"]
+    elif buf[-1] != ";": return [], ["NO SEMICOLON\n"]
     
     commands = buf.split(";")
     commands = [cmd.strip() for cmd in commands if cmd != ""]
@@ -91,8 +90,6 @@ def process_commands(buf : str):
     
     for command in commands:
         # key commands
-        
-        
         if command.startswith("!") and not command.startswith("!!"):
             k_payload, k_errors = get_key(command)
         
@@ -145,17 +142,17 @@ def process_commands(buf : str):
                             k_payload, k_errors = get_key(r_command)
                             
                             rep_payload += k_payload
-                            rep_payload.append(f"delay {delay}")
                             errors += k_errors
                         else:
-                            rep_payload += usb.get_sequence(r_command)
-                            rep_payload.append(f"delay {delay}")
+                            rep_payload += usb.get_sequence(command.replace(r'\n', '\n'))
+                        
+                        rep_payload.append(f"delay {delay}")
                                 
                     payload += (rep_payload * repetitions)[:-1]
             else:
                 errors.append(f"MISSING ARGUMENT FOR {arg[0]}")
         # custom text
         else:
-            payload += usb.get_sequence(command)
+            payload += usb.get_sequence(command.replace(r'\n', '\n'))
     
     return payload, errors
