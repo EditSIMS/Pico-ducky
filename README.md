@@ -20,6 +20,8 @@ Credits to Circuitpython for providing adafruit library bundle and python SDK, a
 8. Follow the syntax and drop payloads!
 
 # How to use: Commands
+
+
 2 Types of commands: 
 - Payloads
 - System requests
@@ -37,6 +39,8 @@ Example Payload: Rick roll
 
 - !lgui+r;https://www.youtube.com/watch?v=E4WlUXrJgy4;!enter;
 
+
+
 System requests:
 
 - SET_PAYLOAD [INSERT YOUR PAYLOAD HERE]
@@ -52,6 +56,8 @@ Does not require any arguments.
 - PING
 
 Use this to test the bluetooth signal and to make sure the Pi is running without issues.
+
+
 
 KEYS:
 
