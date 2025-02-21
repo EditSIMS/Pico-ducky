@@ -13,7 +13,6 @@ from package import *
 # open payload.json
 payload_filename = "payload.json"
 placeholder = {
-    "run" : False,
     "payload" : []
 }
 payload_corrupted = False
@@ -70,7 +69,6 @@ while True:
                     uart.write(", ".join(errors))
                 else:
                     data = {
-                        "run" : True,
                         "payload" : payload
                     }
                     
