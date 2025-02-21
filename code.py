@@ -87,7 +87,7 @@ while True:
             elif buffer == "RESET":
                 uart.write("OK\n")
                 microcontroller.reset()
-            else:
+            elif buffer[-1] == ";":
                 payload, errors = process_commands(buffer)
                 
                 if len(errors) > 0:
@@ -95,6 +95,8 @@ while True:
                 else:
                     send(payload)
                     uart.write("DONE\n")
+            else:
+                uart.write("BAD MESSAGE\n")
             
             led.value = False
             buffer = ""
