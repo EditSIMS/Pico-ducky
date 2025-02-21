@@ -60,6 +60,10 @@ Does not require any arguments.
 
 Use this to test the bluetooth signal and to make sure the Pi is running without issues.
 
+- RESET
+
+Use this to reset the MCU.
+
 **KEYS:**
 
 - lcontrol : Left Control
