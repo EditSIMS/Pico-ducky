@@ -37,7 +37,7 @@ Payload must always end with ; to confirm it's integrity
 
 - delay, Waits for milliseconds, usage: !!delay 200;
 - hex,  Types a custom hex key, usage: !!hex 0x15;
-- repeat, Repeats a payload X times, usage:  !!repeat 5 !space;
+- COMING SOON: repeat, Repeats a payload X times, usage:  !!repeat 5 !space;
 
 **Example Payload: Rick roll**
 
