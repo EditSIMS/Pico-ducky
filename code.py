@@ -99,7 +99,7 @@ led.direction = digitalio.Direction.OUTPUT
 def delay(delay_ms : int):
     time.sleep(delay_ms / 1000)
 
-def send(this_input, sleep=0.25):
+def send(this_input, sleep=0.05):
     for item in this_input:
         if type(item) is list:
             kbd.send(*item)
@@ -115,8 +115,10 @@ def process_commands(buf : str):
     commands = [cmd for cmd in commands if cmd != ""]
     payload = []
     
+    
     for command in commands:
         # key commands
+
         if command.startswith("!") and not command.startswith("!!"):
             if "+" in command:
                 strokes = []
@@ -154,9 +156,12 @@ def process_commands(buf : str):
             args = command[2:].split(" ")
             # Delay command
             if args[0] == "delay" and len(args) == 2:
+                send(payload)
+                payload = []
+                
                 ms = None
                 try:
-                    ms = int(args[1])
+                    ms = int(args[1])  
                     delay(ms)
                 except:
                     uart.write("INVALID DELAY\n")
@@ -175,8 +180,8 @@ def process_commands(buf : str):
         else:
             payload += usb.get_sequence(command)
     
-    send(payload)
 
+    send(payload)
 
 # preprocessing
 special_keys_upper = {k.upper(): v for k, v in usb.special.items()}
@@ -192,18 +197,17 @@ while True:
         decoded = data.decode()
         if decoded == "\n":
             led.value = True
+            info = f"RECIEVED: {buffer}\n"
+            
+            print(info, end="")
+            uart.write(info)
             
             buffer = buffer.strip().split("\n")[0]
             
             process_commands(buffer)
             
-            print(f"RECIEVED: {buffer}")
-            uart.write("OK\n")
+            uart.write("DONE\n")
             
             led.value = False
             buffer = ""
         else: buffer += decoded
-            
-        
-        
-        
