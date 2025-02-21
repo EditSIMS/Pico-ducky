@@ -20,12 +20,15 @@ Credits to Circuitpython for providing adafruit library bundle and python SDK, a
 8. Follow the syntax and drop payloads!
 
 # How to use:  Payloads
+2 Types of commands: 
+- Payloads
+- System requests
 
-Syntax:
+Payload Syntax:
 Commands must be seperated with ;
 Payload must always end with ; to confirm it's integrity
 
-Commands:
+Payload Commands:
 Key commands, prefixed with !, combine multiple keys with + operator, example:  !lcontrol+lalt+del;
 Special commands, prefixed with !!, usually have an argument, which is seperated by a whitespace, example: !!delay 200; example: !!hex 0x15;
 Generic text, No prefix needed, just type away, example:  i hackz into yur compoter;
@@ -33,6 +36,22 @@ Generic text, No prefix needed, just type away, example:  i hackz into yur compo
 Example Payload: Rick roll
 
 - !lgui+r;https://www.youtube.com/watch?v=E4WlUXrJgy4;!enter;
+
+System requests:
+
+- SET_PAYLOAD [INSERT YOUR PAYLOAD HERE]
+
+This command lets you modify the BOOT payload, paste a regular payload while minding a SPACE after the initial command.
+Boot payloads are stored on the main drive as a JSON file, they will run within 300ms of boot time.
+
+- RESET_PAYLOAD
+
+This command resets your boot payload so it does not run
+Does not require any arguments.
+
+- PING
+
+Use this to test the bluetooth signal and to make sure the Pi is running without issues.
 
 KEYS:
 
