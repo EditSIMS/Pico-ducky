@@ -103,8 +103,6 @@ def process_commands(buf : str):
             args = command[2:].split(" ")
             # Delay command
             if args[0] == "delay" and len(args) == 2:
-                payload = []
-                
                 ms = None
                 try:
                     ms = int(args[1])  
