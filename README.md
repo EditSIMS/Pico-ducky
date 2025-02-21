@@ -13,7 +13,7 @@ Credits to Circuitpython for providing adafruit library bundle and python SDK, a
 ![4bun501eqka91-3320441646](https://github.com/user-attachments/assets/9e135ee2-758a-4070-ae13-0753a2d786f6)
 
 
-5. Paste the code.py into the pico's main directory
+5. Paste the code.py and boot.py into the pico's main directory
 6. Paste the lib folder into there as well.
 
 7. Pair your bluetooth module with any bluetooth serial app you prefer. (i reccomend "Serial Bluetooth Terminal" on play store)
