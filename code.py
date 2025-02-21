@@ -25,8 +25,10 @@ if payload_filename in os.listdir():
         if not compare_dicts(data, placeholder):
             raise ValueError
         else:
+            led.value = True
             time.sleep(0.3)
             send(data["payload"])
+            led.value = False
 
     except (ValueError, OSError):
         payload_corrupted = True
