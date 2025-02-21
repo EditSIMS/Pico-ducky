@@ -29,9 +29,9 @@ Commands must be seperated with ;
 Payload must always end with ; to confirm it's integrity
 
 Payload Commands:
-Key commands, prefixed with !, combine multiple keys with + operator, example:  !lcontrol+lalt+del;
-Special commands, prefixed with !!, usually have an argument, which is seperated by a whitespace, example: !!delay 200; example: !!hex 0x15;
-Generic text, No prefix needed, just type away, example:  i hackz into yur compoter;
+- Key commands, prefixed with !, combine multiple keys with + operator, example:  !lcontrol+lalt+del;
+- Special commands, prefixed with !!, usually have an argument, which is seperated by a whitespace, example: !!delay 200; example: !!hex 0x15;
+- Generic text, No prefix needed, just type away, example:  i hackz into yur compoter;
 
 Example Payload: Rick roll
 
