@@ -17,7 +17,20 @@ payload_filename = "payload.json"
 placeholder = {
     "payload" : []
 }
+
+def get_payload_size(obj):
+    global payload_size
+    payload_size = 0
+    for item in obj:
+        if type(item) is int:
+            payload_size += 28
+        elif type(item) is str:
+            payload_size += 49 + len(item)
+        elif type(item) is list:
+            get_payload_size(item)
+
 payload_corrupted = False
+payload_size = 0
 
 if payload_filename in os.listdir():
     try:
@@ -29,7 +42,8 @@ if payload_filename in os.listdir():
         if not valid:
             raise ValueError
         elif valid and len(data["payload"]) > 0:
-            print("RUNNING PAYLOAD NOW")
+            get_payload_size(data["payload"])
+            print(f"PAYLOAD SIZE: {payload_size} bytes\nRUNNING PAYLOAD NOW")
             led.value = True
             time.sleep(0.3)
             send(data["payload"])
@@ -75,6 +89,7 @@ while True:
                 if len(errors) > 0:
                     uart.write(", ".join(errors))
                 else:
+                    get_payload_size(payload)
                     data = {
                         "payload" : payload
                     }
@@ -82,7 +97,7 @@ while True:
                     with open(payload_filename, "w") as f:
                         json.dump(data, f)
                 
-                    uart.write("PAYLOAD SUCCESSFULLY SET\n")
+                    uart.write(f"PAYLOAD SIZE: {payload_size} bytes\nPAYLOAD SUCCESSFULLY SET\n")
             
             elif buffer == "RESET_PAYLOAD":
                 uart.write("OK\n")
@@ -97,10 +112,16 @@ while True:
                 uart.write("OK\n")
                 payload, errors = process_commands(buffer)
                 
+                
+                
                 if len(errors) > 0:
                     uart.write(", ".join(errors))
                 else:
+                    get_payload_size(payload)
+                    uart.write(f"PAYLOAD SIZE: {payload_size} bytes\n")
+                    
                     send(payload)
+                    
                     uart.write("DONE\n")
             else:
                 uart.write("INVALID COMMAND/PAYLOAD\n")
