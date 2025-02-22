@@ -21,7 +21,7 @@ def send(this_input, sleep=0.05):
     for item in this_input:
         if type(item) is str:
             args = item.split(" ")
-            if args[0] == "delay":
+            if args[0] == "d":
                 time.sleep(int(args[1]) / 1000)
         elif type(item) is list:
             kbd.send(*item)
@@ -105,7 +105,7 @@ def process_commands(buf : str):
                 ms = None
                 try:
                     ms = int(args[1])  
-                    payload.append(f"delay {ms}")
+                    payload.append(f"d {ms}")
                     
                 except:
                     errors.append("INVALID DELAY")
@@ -148,9 +148,13 @@ def process_commands(buf : str):
                         else:
                             rep_payload += usb.get_sequence(command.replace(r'\n', '\n'))
                         
-                        rep_payload.append(f"delay {delay}")
-                                
-                    payload += (rep_payload * repetitions)[:-1]
+                        rep_payload.append(f"d {delay}")
+                    
+                    try:
+                        payload += (rep_payload * repetitions)[:-1]
+                    except MemoryError:
+                        errors.append("TOO MUCH MEMORY CONSUMED\n")
+                        return [], errors
                 else:
                     errors.append(f"MISSING ARGUMENT FOR {args[0]}")
             else:
