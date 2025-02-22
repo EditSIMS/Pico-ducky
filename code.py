@@ -10,6 +10,8 @@ Github repo: https://github.com/EditSIMS/Pico-ducky/tree/main
 
 from package import *
 
+print("Pico ducky initiated. MADE WITH CIRCUITPYTHON. REPO: https://github.com/EditSIMS/Pico-ducky/tree/main")
+
 # open payload.json
 payload_filename = "payload.json"
 placeholder = {
@@ -21,14 +23,18 @@ if payload_filename in os.listdir():
     try:
         with open(payload_filename, "r") as f:
             data = json.load(f)
-
-        if not compare_dicts(data, placeholder):
+        
+        valid = compare_dicts(data, placeholder)
+        
+        if not valid:
             raise ValueError
-        else:
+        elif valid and len(data["payload"]) > 0:
+            print("RUNNING PAYLOAD NOW")
             led.value = True
             time.sleep(0.3)
             send(data["payload"])
             led.value = False
+            print("FINISHED RUNNING PAYLOAD")
 
     except (ValueError, OSError):
         payload_corrupted = True
@@ -41,10 +47,10 @@ else:
 
 buffer : str = ""
 
-print("Pico ducky initiated. MADE WITH CIRCUITPYTHON. REPO: https://github.com/EditSIMS/Pico-ducky/tree/main")
+
 
 if payload_corrupted:
-    print(f"{payload_filename} not found or corrupted, PAYLOAD HAS BEEN RESET TO DEFAULT AND WILL NOT RUN")
+    print(f"{payload_filename} not found or corrupted, PAYLOAD HAS BEEN RESET AND WILL NOT RUN")
     
 while True:
     data = uart.read(32)  # read up to 32 bytes
@@ -53,7 +59,7 @@ while True:
         try:
             decoded = data.decode()
         except:
-            print(f"Bad byte: {data}")
+            print(f"DECODED BAD BYTE: {data}")
             
         if decoded == "\n":
             led.value = True
@@ -96,7 +102,7 @@ while True:
                     send(payload)
                     uart.write("DONE\n")
             else:
-                uart.write("BAD MESSAGE\n")
+                uart.write("INVALID COMMAND/PAYLOAD\n")
             
             led.value = False
             buffer = ""
