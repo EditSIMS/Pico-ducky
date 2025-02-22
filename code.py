@@ -66,10 +66,9 @@ while True:
             
             buffer = buffer.strip().split("\n")[0]
             
-            valid = True
-            
             print(f"RECIEVED: {buffer}")
             if buffer.startswith("SET_PAYLOAD"):
+                uart.write("OK\n")
                 commands = buffer[len("SET_PAYLOAD") + 1:]
                 payload, errors = process_commands(commands)
                 
@@ -85,14 +84,17 @@ while True:
                 
                     uart.write("PAYLOAD SUCCESSFULLY SET\n")
             
-            elif buffer == "RESET_PAYLOAD":        
+            elif buffer == "RESET_PAYLOAD":
+                uart.write("OK\n")
                 with open(payload_filename, "w") as f:
                     json.dump(placeholder, f)
                 
                 uart.write("PAYLOAD DELETED SUCCESSFULLY\n")
             elif buffer == "RESET":
+                uart.write("OK\n")
                 microcontroller.reset()
             elif buffer[-1] == ";":
+                uart.write("OK\n")
                 payload, errors = process_commands(buffer)
                 
                 if len(errors) > 0:
@@ -101,11 +103,7 @@ while True:
                     send(payload)
                     uart.write("DONE\n")
             else:
-                valid = False
                 uart.write("INVALID COMMAND/PAYLOAD\n")
-                
-            if valid:
-                uart.write("OK\n")
             
             led.value = False
             buffer = ""
