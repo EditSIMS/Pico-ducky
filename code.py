@@ -66,10 +66,10 @@ while True:
             
             buffer = buffer.strip().split("\n")[0]
             
+            valid = True
+            
             print(f"RECIEVED: {buffer}")
-            if buffer == "PING":
-                uart.write("OK\n")
-            elif buffer.startswith("SET_PAYLOAD"):
+            if buffer.startswith("SET_PAYLOAD"):
                 commands = buffer[len("SET_PAYLOAD") + 1:]
                 payload, errors = process_commands(commands)
                 
@@ -91,7 +91,6 @@ while True:
                 
                 uart.write("PAYLOAD DELETED SUCCESSFULLY\n")
             elif buffer == "RESET":
-                uart.write("OK\n")
                 microcontroller.reset()
             elif buffer[-1] == ";":
                 payload, errors = process_commands(buffer)
@@ -102,7 +101,11 @@ while True:
                     send(payload)
                     uart.write("DONE\n")
             else:
+                valid = False
                 uart.write("INVALID COMMAND/PAYLOAD\n")
+                
+            if valid:
+                uart.write("OK\n")
             
             led.value = False
             buffer = ""
