@@ -83,13 +83,15 @@ def process_commands(buf : str):
     elif buf[-1] != ";": return [], ["NO SEMICOLON\n"]
     
     commands = buf.split(";")
-    commands = [cmd.strip() for cmd in commands if cmd != ""]
+    commands = [cmd for cmd in commands if cmd != ""]
     payload = []
     
     errors = []
     
     for command in commands:
         # key commands
+        unstripped = str(command)
+        command = command.strip()
         if command.startswith("!") and not command.startswith("!!"):
             k_payload, k_errors = get_key(command)
         
@@ -149,10 +151,12 @@ def process_commands(buf : str):
                         rep_payload.append(f"delay {delay}")
                                 
                     payload += (rep_payload * repetitions)[:-1]
+                else:
+                    errors.append(f"MISSING ARGUMENT FOR {args[0]}")
             else:
-                errors.append(f"MISSING ARGUMENT FOR {arg[0]}")
+                errors.append(f"INVALID SPECIAL COMMAND: {args[0]}")
         # custom text
         else:
-            payload += usb.get_sequence(command.replace(r'\n', '\n'))
+            payload += usb.get_sequence(unstripped.replace(r'\n', '\n'))
     
     return payload, errors
